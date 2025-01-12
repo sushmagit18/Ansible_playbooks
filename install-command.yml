@@ -1,0 +1,14 @@
+---
+- name: Install Wget on the Agent Node
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Install wget
+      command: yum install wget -y
+      creates: /usr/bin/wget
+    
+    - name: Check wget install or not
+      command: wget --version
+      register: wget_version
+      failed_when: "wget is not installed"
+      changed_when: false 

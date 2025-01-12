@@ -12,3 +12,16 @@
         name: httpd
         state: started
         enabled: yes
+    - name: Copy index.html file to agent path
+      copy:
+        src: /home/ec2-user/playbooks/Ansible_playbooks/index.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: '0644'
+  
+  tasks:
+    - name: Install postgresql
+      yum:
+        name: postgresql
+        state: present
